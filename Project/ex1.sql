@@ -1,0 +1,28 @@
+﻿CREATE TABLE fan (
+  fanID INTEGER PRIMARY KEY,
+  fanName VARCHAR(100)
+);
+
+CREATE TABLE band (
+  bandID INTEGER PRIMARY KEY,
+  bandName VARCHAR(100),
+  genre VARCHAR(100),
+  year INTEGER,
+  CHECK (year >= 1900)
+);
+
+CREATE TABLE likes (
+  fanID INTEGER,
+  bandID INTEGER,
+  PRIMARY KEY (fanID, bandID),
+  FOREIGN KEY (fanID) REFERENCES fan,
+  FOREIGN KEY (bandID) REFERENCES band
+);
+
+CREATE TABLE bandMember (
+  memID INTEGER PRIMARY KEY,
+  memName VARCHAR(100),
+  bandID INTEGER,
+  nationality VARCHAR(100) NOT NULL,
+  FOREIGN KEY (bandID) REFERENCES band
+);
